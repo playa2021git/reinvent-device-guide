@@ -51,13 +51,21 @@ function cardBadges(d) {
   return badges.join('');
 }
 
+const deviceImageAlt = d => d.generatedImage
+  ? `${d.name}の実物形状を参考にした実写風AIイラスト`
+  : `${d.name}${d.builtIn ? 'が内蔵されたmicro:bit V2' : 'の実物写真'}`;
+
+const deviceImageNote = d => d.generatedImage
+  ? '実物の特徴を保った実写風AIイラスト'
+  : d.builtIn ? '赤い印の機能が内蔵' : d.category === 'ai' ? 'AIの学習場面' : '外部デバイス';
+
 function renderDevices() {
   const term = search.value.trim().toLowerCase();
   const visible = DEVICES.filter(d => matchesFilter(d, activeFilter) && `${d.name} ${d.description} ${d.targets} ${d.ideas.join(' ')}`.toLowerCase().includes(term));
   count.textContent = `${visible.length}個のデバイス`;
   empty.hidden = visible.length > 0;
   grid.innerHTML = visible.map(d => `<article class="device-card">
-    <div class="device-visual ${d.category} ${FEATURE_FOCUS[d.id] ? 'feature-map' : ''}">${d.image ? `<img src="${d.image}" alt="${d.name}${d.builtIn ? 'が内蔵されたmicro:bit V2' : 'の実物写真'}">${FEATURE_FOCUS[d.id] ? `<span class="feature-marker mini" style="--focus-x:${FEATURE_FOCUS[d.id].x}%;--focus-y:${FEATURE_FOCUS[d.id].y}%"><b></b><em>${FEATURE_FOCUS[d.id].label}</em></span>` : ''}` : `<span aria-hidden="true">${d.icon}</span>`}<small>${d.builtIn ? '赤い印の機能が内蔵' : d.category === 'ai' ? 'AIの学習場面' : '外部デバイス'}</small></div>
+    <div class="device-visual ${d.category} ${FEATURE_FOCUS[d.id] ? 'feature-map' : ''}">${d.image ? `<img src="${d.image}" alt="${deviceImageAlt(d)}">${FEATURE_FOCUS[d.id] ? `<span class="feature-marker mini" style="--focus-x:${FEATURE_FOCUS[d.id].x}%;--focus-y:${FEATURE_FOCUS[d.id].y}%"><b></b><em>${FEATURE_FOCUS[d.id].label}</em></span>` : ''}` : `<span aria-hidden="true">${d.icon}</span>`}<small>${deviceImageNote(d)}</small></div>
     <div class="device-body"><div class="badges">${cardBadges(d)}</div><h3>${d.name}</h3><p>${d.description}</p>
     <ul class="card-facts"><li><span>接続</span><b>${d.connection}</b></li>${d.ports.length ? `<li><span>おすすめ</span><b>${d.ports.join(' + ')}</b></li>` : ''}<li><span>MakeCode</span><b>${d.operation}</b></li></ul>
     <button type="button" class="detail-button" data-device="${d.id}">詳しく見る</button></div></article>`).join('');
@@ -73,12 +81,12 @@ function openDevice(id) {
   const d = DEVICES.find(item => item.id === id); if (!d) return;
   const focus = FEATURE_FOCUS[d.id];
   const focusMarker = focus ? `<span class="feature-marker" style="--focus-x:${focus.x}%;--focus-y:${focus.y}%"><b></b><em>${focus.label}</em></span>` : '';
-  dialogContent.innerHTML = `<div class="detail-hero"><div class="detail-visual ${d.category} ${focus ? 'feature-map' : ''}">${d.image ? `<img src="${d.image}" alt="${d.name}${d.builtIn ? 'の位置が分かるmicro:bit V2' : 'の実物写真'}">${focusMarker}` : `<span aria-hidden="true">${d.icon}</span>`}<small>${d.builtIn ? '赤い印が、この機能の場所です' : d.image ? '実物写真' : '画像準備中'}</small></div><div><div class="badges">${cardBadges(d)}</div><h2 id="dialog-title">${d.name}</h2><p>${d.description}</p>${d.builtIn ? `<div class="built-in-insight"><b>✅ 外部デバイスはいりません</b><span>${d.builtInNote || 'この機能はmicro:bit本体に内蔵されています。'}</span></div>` : ''}</div></div>
+  dialogContent.innerHTML = `<div class="detail-hero"><div class="detail-visual ${d.category} ${focus ? 'feature-map' : ''}">${d.image ? `<img src="${d.image}" alt="${d.generatedImage ? deviceImageAlt(d) : `${d.name}${d.builtIn ? 'の位置が分かるmicro:bit V2' : 'の実物写真'}`}">${focusMarker}` : `<span aria-hidden="true">${d.icon}</span>`}<small>${d.builtIn ? '赤い印が、この機能の場所です' : d.generatedImage ? '実物の特徴を保った実写風AIイラスト' : d.image ? '実物写真' : '画像準備中'}</small></div><div><div class="badges">${cardBadges(d)}</div><h2 id="dialog-title">${d.name}</h2><p>${d.description}</p>${d.builtIn ? `<div class="built-in-insight"><b>✅ 外部デバイスはいりません</b><span>${d.builtInNote || 'この機能はmicro:bit本体に内蔵されています。'}</span></div>` : ''}</div></div>
     <div class="detail-grid"><section><h3>何ができる？</h3><p>${d.description}。${d.ideas.map(x => `「${x}」`).join('、')}などに使えます。</p></section><section><h3>必要なもの</h3><div class="parts-visual">${d.parts.map((p,i) => `${i ? '<b>＋</b>' : ''}<span><i>${p.includes('micro:bit') ? '🧠' : p.includes('Shield') ? '🔌' : d.icon}</i>${p}</span>`).join('')}</div></section>
     <section><h3>Shieldは？</h3><p class="big-answer">${d.shield ? '🔌 必要' : '✅ 不要'}</p><p>${d.shield ? 'Grove Shieldをmicro:bitに取り付けてから使います。' : d.builtIn ? 'micro:bitの中に入っているので、そのまま使えます。' : 'micro:bit側へ直接つなぎます。'}</p></section><section><h3>どこにつなぐ？</h3>${portGraphic(d)}</section>
     <section><h3>MakeCodeで使うもの</h3>${d.path ? `<p class="path">${d.path}</p>` : ''}${d.blockImage ? `<figure class="block-shot"><img src="${d.blockImage}" alt="MakeCodeの入力カテゴリーにある${d.block}などの実際のブロック"><figcaption>「入力」カテゴリーから、${d.block}を探そう。</figcaption></figure>` : `<div class="makecode-block"><small>${d.operation}</small><strong>${d.block}</strong></div>`}${d.ports.length ? '<p class="port-reminder">⚠ 線をつないだポートと、ブロックの番号をそろえよう。</p>' : ''}</section><section><h3>拡張機能</h3><p class="big-answer">${d.extension || '不要'}</p>${d.extensionUrl ? `<a href="${d.extensionUrl}" target="_blank" rel="noreferrer">拡張機能のページを開く</a>` : ''}</section>
     <section class="first-test"><h3>▶ まずこれだけ動かしてみよう</h3><p>${d.firstTest}</p></section><section><h3>💡 こんなの作れるかも！</h3><ul class="idea-list">${d.ideas.map(x=>`<li>${x}</li>`).join('')}</ul></section></div>
-    <p class="source-link">製品情報・写真出典：<a href="${d.source}" target="_blank" rel="noreferrer">公式・商品ページを開く</a></p>`;
+    <p class="source-link">製品情報：<a href="${d.source}" target="_blank" rel="noreferrer">公式・商品ページを開く</a>${d.generatedImage ? '<br>画像は実物の形状・端子数・基板色を参考に制作した実写風AIイラストです。' : ''}</p>`;
   dialog.showModal(); document.body.classList.add('modal-open');
 }
 

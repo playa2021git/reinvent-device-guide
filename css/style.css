@@ -6,13 +6,14 @@
 @media(max-width:430px){.hero h1{font-size:2.35rem}.sca-letter{display:none}.sca-card p{display:none}.sca-card{padding:13px 3px}.entry-card{padding:18px}.device-grid{grid-template-columns:1fr}.result-flow strong{font-size:.66rem}.result-flow>div{padding:10px 3px}.result-flow i{margin:0 3px}.parts-visual{align-items:stretch;flex-direction:column}.parts-visual b{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
-/* Grove Shieldの実物写真と役割 */
+/* Grove Shieldの実写風AIイラストと役割 */
 .code-guide-grid{grid-template-columns:repeat(4,1fr)}
 .operation.analog-output{background:#ffe8bf;color:#9a5400}
 .shield-note{grid-template-columns:240px 1fr}
 .shield-visual{margin:0;height:180px;border:1px solid var(--line);background:#f4f7fb;display:flex;flex-direction:column;overflow:hidden;font-size:inherit;color:var(--ink)}
 .shield-visual img{width:100%;height:140px;object-fit:contain;background:#fff;padding:10px}
 .shield-visual figcaption{font-size:.72rem;font-weight:800;color:var(--muted);padding:5px}
+.shield-visual figcaption span{display:inline-block;margin-left:7px;padding:1px 6px;border-radius:99px;background:#eee9ff;color:#5832b4;font-size:.62rem}
 .shield-note h3{font-size:1.45rem}
 .shield-benefits{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
 .shield-benefits p{background:var(--sky);border-radius:12px;padding:11px 13px;margin:0}
