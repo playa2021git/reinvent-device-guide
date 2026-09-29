@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="野田中学校 技術科『再発明』のためのデバイスガイド。センサ、micro:bit、アクチュエータのつなぎ方とMakeCodeの使い方を学べます。">
+  <meta name="theme-color" content="#155eef">
+  <title>再発明デバイスガイド｜野田中学校</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23155eef'/%3E%3Cpath d='M15 35h10l5-14 7 25 5-11h8' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="再発明デバイスガイド トップへ"><span class="brand-mark">R</span><span>再発明<br><small>DEVICE GUIDE</small></span></a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-nav">メニュー</button>
+    <nav id="main-nav" aria-label="メインメニュー">
+      <a href="#top">🏠 はじめに</a><a href="#devices" data-filter-link="sensor">👀 S センサ</a><a href="#computer">🧠 C コンピュータ</a><a href="#devices" data-filter-link="actuator">⚙️ A 動かす</a><a href="#connect">🔌 つなぎ方</a><a href="#makecode">🧩 MakeCode</a><a href="#ai">🤖 AI</a><a class="nav-accent" href="#combine">💡 組み合わせる</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">野田中学校 3年 技術科</p>
+        <h1>アイデアを、<br><em>技術の力で再発明</em>しよう。</h1>
+        <p class="hero-lead">これまで学んだ知識をすべて組み合わせ、<br>世の中で役立つアイデアを形にしよう。</p>
+        <a class="primary-button" href="#devices">再発明の材料を探す</a>
+      </div>
+      <div class="sca-flow" aria-label="SCAの流れ">
+        <article class="sca-card sensor"><span class="sca-letter">S</span><span class="sca-icon">👀</span><h2>調べる</h2><p>まわりの様子を<br>センサで知る</p></article>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <article class="sca-card computer"><span class="sca-letter">C</span><span class="sca-icon">🧠</span><h2>判断する</h2><p>micro:bitが<br>どうするか考える</p></article>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <article class="sca-card actuator"><span class="sca-letter">A</span><span class="sca-icon">⚙️</span><h2>動かす</h2><p>光・音・動きで<br>できごとを起こす</p></article>
+      </div>
+      <div class="example-strip"><span>📚 これまでの学びを総動員</span><b>→</b><span>💡 アイデアを技術で形に</span><b>→</b><span>🌏 世の中で役立つ「再発明」へ</span></div>
+    </section>
+
+    <section class="quick-start section-shell" aria-labelledby="start-title">
+      <div class="section-heading"><p class="kicker">どこから考えてもOK</p><h2 id="start-title">何から探す？</h2></div>
+      <div class="entry-grid">
+        <a class="entry-card sensor" href="#devices" data-filter-link="sensor"><span>👀</span><div><strong>センサから探す</strong><small>何かを調べたい</small></div></a>
+        <a class="entry-card actuator" href="#devices" data-filter-link="actuator"><span>⚙️</span><div><strong>動かすものから探す</strong><small>光・音・動き・水を使いたい</small></div></a>
+        <a class="entry-card ai" href="#ai"><span>🤖</span><div><strong>AIを使う</strong><small>カメラやマイクで判断させたい</small></div></a>
+      </div>
+    </section>
+
+    <section class="device-section section-shell" id="devices" aria-labelledby="device-title">
+      <div class="section-heading split"><div><p class="kicker">DEVICE LIBRARY</p><h2 id="device-title">できることから、部品を見つけよう</h2></div><p>カードを選ぶと、必要なもの・つなぎ方・使うブロックが分かります。</p></div>
+      <label class="search-box"><span>🔎</span><span class="sr-only">デバイスを検索</span><input id="device-search" type="search" placeholder="何をしたい？ 例：人、距離、水、動かす" autocomplete="off"></label>
+      <div class="filter-row" id="filters" aria-label="デバイスの絞り込み"></div>
+      <p class="result-count" id="result-count" aria-live="polite"></p>
+      <div class="device-grid" id="device-grid"></div>
+      <div class="empty-state" id="empty-state" hidden><span>🔎</span><h3>見つかりませんでした</h3><p>「水」「音」「動く」など、短いことばで探してみよう。</p></div>
+    </section>
+
+    <section class="computer-section" id="computer">
+      <div class="section-shell computer-layout">
+        <div><p class="kicker light">C = COMPUTER</p><h2>判断する中心は<br>micro:bit</h2><p>センサから情報を受け取り、「もし○○なら」と考えて、次の動きを決めます。</p><div class="built-in-list"><span>ボタン</span><span>タッチロゴ</span><span>明るさ</span><span>温度</span><span>マイク</span><span>加速度</span><span>コンパス</span></div></div>
+        <figure class="microbit-photo"><img src="assets/diagrams/microbit-v2-features.png" alt="micro:bit V2の表と裏。ボタン、LED、マイク、タッチロゴ、加速度・コンパス・温度センサ、P0・P1・P2・3V・GNDの位置"><figcaption>本体の表と裏に、調べる機能・知らせる機能が入っています。</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="connect-section section-shell" id="connect" aria-labelledby="connect-title">
+      <div class="section-heading"><p class="kicker">CONNECT</p><h2 id="connect-title">つなぎ方の3つのルール</h2></div>
+      <div class="rule-grid">
+        <article><span class="rule-number">01</span><h3>1個ならP0から</h3><p>外付け機器を1個だけ使うときは、基本的にP0から使います。</p><div class="port-demo"><b>P0</b><span>人感センサ</span></div></article>
+        <article><span class="rule-number">02</span><h3>同じポートは使わない</h3><p>複数の機器は、P0・P1・P2の空いている場所へ分けます。</p><div class="port-demo"><b>P0</b><span>人感</span><b>P1</b><span>サーボ</span></div></article>
+        <article class="important-rule"><span class="rule-number">03</span><h3>線とプログラムをそろえる</h3><p>線をP1へつないだら、MakeCodeのブロックもP1へ変えます。</p><div class="match-demo"><span>🔌 P1</span><b>=</b><span>🧩 P1</span></div></article>
+      </div>
+      <div class="callout"><span>📣</span><div><strong>線をつないだ場所と、MakeCodeのポート番号をそろえよう！</strong><p>ここが違うと、正しいプログラムでも動きません。</p></div></div>
+      <div class="shield-note"><figure class="shield-visual"><img src="assets/devices/grove-shield.jpg" alt="micro:bit用Grove Shieldの実物写真"><figcaption>micro:bit用 Grove Shield</figcaption></figure><div><p class="kicker">GROVE SHIELDって何？</p><h3>端子を増やして、Grove部品を簡単につなぐ道具</h3><div class="shield-benefits"><p><b>➕ つなげる端子が増える</b><span>複数のセンサやアクチュエータを使いやすくなります。</span></p><p><b>🔌 Grove形状なら挿すだけ</b><span>同じ形のコネクタなので、向きを確かめてケーブルを挿せます。</span></p></div><p class="shield-tip">カードに「🔌 Shield必要」とあったら、micro:bitにGrove Shieldを取り付けよう。</p></div></div>
+    </section>
+
+    <section class="makecode-section" id="makecode">
+      <div class="section-shell"><div class="section-heading"><p class="kicker">MAKECODE FIRST GUIDE</p><h2>ブロックは「名前」で見つけよう</h2><p>色だけでなく、カテゴリーとブロック名まで確認します。</p></div>
+        <div class="code-guide-grid">
+          <article><span class="operation analog">細かく変わる数字</span><h3>アナログ入力</h3><p>土の湿り具合などを数字で読みます。</p><div class="block-path"><small>高度なブロック → 入出力端子</small><strong>アナログ値を読み取る P0</strong></div></article>
+          <article><span class="operation digital">0か1</span><h3>デジタル入力</h3><p>人がいる／いないなどを読みます。</p><div class="block-path"><small>高度なブロック → 入出力端子</small><strong>デジタル値を読み取る P0</strong></div></article>
+          <article><span class="operation analog-output">強さを変える数字</span><h3>アナログ出力</h3><p>振動モータなどの強さを数字で変えます。</p><div class="block-path"><small>高度なブロック → 入出力端子</small><strong>アナログで出力する P0 値 0〜1023</strong></div></article>
+          <article><span class="operation output">ONかOFF</span><h3>デジタル出力</h3><p>ポンプなどに動く／止まるを命令します。</p><div class="block-path"><small>高度なブロック → 入出力端子</small><strong>デジタルで出力する P0 値 1</strong></div></article>
+        </div>
+        <details class="extension-guide"><summary><span>🧩</span><div><strong>拡張機能って何？</strong><small>MakeCodeに新しい専用ブロックを追加する仕組み</small></div></summary><ol><li>MakeCodeを開く</li><li>「拡張機能」を選ぶ</li><li>名前またはURLで検索</li><li>見つかった拡張機能を選ぶ</li><li>新しいカテゴリーが追加されたら完了</li></ol></details>
+      </div>
+    </section>
+
+    <section class="combine-section section-shell" id="combine" aria-labelledby="combine-title">
+      <div class="section-heading centered"><p class="kicker">IDEA BUILDER</p><h2 id="combine-title">3つを選んで、作品を組み立てよう</h2><p>選ぶと、必要な部品とポートの使い方が自動で分かります。</p></div>
+      <div class="builder-grid">
+        <div class="builder-controls">
+          <label><span><b>1</b> 何を調べる？</span><select id="sensor-select"></select></label>
+          <label><span><b>＋</b> もう1つ調べる？（任意）</span><select id="sensor2-select"><option value="">使わない</option></select></label>
+          <label><span><b>2</b> どう判断する？</span><select id="condition-select"><option value="変化したら">変化したら</option><option value="近づいたら">近づいたら</option><option value="乾いていたら">乾いていたら</option><option value="重さが変わったら">重さが変わったら</option><option value="ボタンを押したら">ボタンを押したら</option></select></label>
+          <label><span><b>3</b> 何をする？</span><select id="actuator-select"></select></label>
+        </div>
+        <div class="builder-result" aria-live="polite">
+          <p class="result-label">できあがる仕組み</p><div class="result-flow" id="result-flow"></div><h3 id="idea-title"></h3>
+          <div class="result-columns"><div><h4>🧰 必要なもの</h4><ul class="check-list" id="parts-list"></ul></div><div><h4>🔌 ポートプラン</h4><div class="port-plan" id="port-plan"></div></div></div>
+          <div class="builder-warning" id="builder-warning" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-section" id="ai">
+      <div class="section-shell"><div class="section-heading"><p class="kicker light">AI + REAL WORLD</p><h2>AIの「見つけた！」を、実物の動きへ</h2><p>Teachable Machineで画像・音・ポーズを覚えさせ、micro:bitや部品へつなげます。</p></div>
+        <div class="ai-types"><article><img src="assets/devices/ai-image-learning.png" alt="カメラの前で赤いボトルと青いカップを見せて画像認識AIに学習させる生徒"><h3>📷 画像認識</h3><p>猫、人、ペットボトル、水皿など</p></article><article><img src="assets/devices/ai-sound-learning.png" alt="マイクに向かって拍手し、音認識AIに学習させる生徒"><h3>🎤 音認識</h3><p>拍手、声、特定の音など</p></article><article><img src="assets/devices/ai-pose-learning.png" alt="カメラの前で手を上げ、ポーズ認識AIに学習させる生徒"><h3>🧍 ポーズ認識</h3><p>手を上げる、立つ、しゃがむなど</p></article></div>
+        <div class="route-grid"><article><small>ルート A</small><h3>Stretch3でつなぐ</h3><div class="ai-route"><span>Teachable<br>Machine</span><b>→</b><span>Stretch3</span><b>→</b><span>micro:bit<br>More</span><b>→</b><span>micro:bit</span><b>→</b><span>実物</span></div></article><article><small>ルート B</small><h3>Make: AI Robotsでつなぐ</h3><div class="ai-route"><span>Teachable<br>Machine</span><b>→</b><span>モデルを<br>書き出す</span><b>→</b><span>Make: AI<br>Robots</span><b>→</b><span>micro:bit</span><b>→</b><span>実物</span></div><a href="https://makeairobots.com/" target="_blank" rel="noreferrer">Make: AI Robotsを開く</a></article></div>
+        <p class="ai-note">Stretch3だけでもAI作品は作れます。ただし今回の再発明では、できるだけmicro:bitやセンサ、モータなど実物の装置も動かしてみましょう。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer><div><strong>再発明デバイスガイド</strong><p>金沢市立野田中学校 技術科</p></div><a href="#top">ページの上へ ↑</a></footer>
+
+  <dialog id="device-dialog" aria-labelledby="dialog-title"><button class="dialog-close" type="button" aria-label="閉じる">×</button><div id="dialog-content"></div></dialog>
+  <script src="js/devices.js"></script><script src="js/app.js"></script>
+</body>
+</html>
