@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#155eef">
   <title>再発明デバイスガイド｜野田中学校</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23155eef'/%3E%3Cpath d='M15 35h10l5-14 7 25 5-11h8' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=board-diagram-1">
 </head>
 <body>
   <a class="skip-link" href="#main">本文へスキップ</a>
@@ -58,7 +58,7 @@
     <section class="computer-section" id="computer">
       <div class="section-shell computer-layout">
         <div><p class="kicker light">C = COMPUTER</p><h2>判断する中心は<br>micro:bit</h2><p>センサから情報を受け取り、「もし○○なら」と考えて、次の動きを決めます。</p><div class="built-in-list"><span>ボタン</span><span>タッチロゴ</span><span>明るさ</span><span>温度</span><span>マイク</span><span>加速度</span><span>コンパス</span></div></div>
-        <figure class="microbit-photo"><img src="assets/diagrams/microbit-v2-features.png" alt="micro:bit V2の表と裏。ボタン、LED、マイク、タッチロゴ、加速度・コンパス・温度センサ、P0・P1・P2・3V・GNDの位置"><figcaption>本体の表と裏に、調べる機能・知らせる機能が入っています。</figcaption></figure>
+        <figure class="microbit-photo"><div class="microbit-map" role="img" aria-label="micro:bit V2の表と裏を模式化したオリジナル図。A・Bボタン、タッチロゴ、LED、マイク、スピーカー、加速度・コンパス・温度センサ、端子の位置を示す"><div class="mb-face mb-front"><span class="mb-title">表</span><span class="mb-logo">TOUCH<br>LOGO</span><span class="mb-button mb-a">A</span><span class="mb-button mb-b">B</span><span class="mb-leds" aria-hidden="true"></span><span class="mb-mic">MIC</span><span class="mb-label mb-label-touch">タッチロゴ</span><span class="mb-label mb-label-buttons">A・Bボタン</span><span class="mb-label mb-label-led">5×5 LED<br><small>明るさも調べる</small></span></div><div class="mb-face mb-back"><span class="mb-title">裏</span><span class="mb-chip mb-chip-main">CPU<br><small>温度</small></span><span class="mb-chip mb-chip-motion">動き<br><small>加速度・コンパス</small></span><span class="mb-speaker">SPEAKER</span><span class="mb-label mb-label-sensor">本体内のセンサ</span><span class="mb-label mb-label-speaker">スピーカー</span></div><div class="mb-ports" aria-hidden="true"><b>P0</b><b>P1</b><b>P2</b><b>3V</b><b>GND</b></div></div><figcaption>写真の転載ではなく、部品の位置関係を学ぶためのオリジナル模式図です。</figcaption></figure>
       </div>
     </section>
 
@@ -114,6 +114,6 @@
   <footer><div><strong>再発明デバイスガイド</strong><p>金沢市立野田中学校 技術科</p></div><a href="#top">ページの上へ ↑</a></footer>
 
   <dialog id="device-dialog" aria-labelledby="dialog-title"><button class="dialog-close" type="button" aria-label="閉じる">×</button><div id="dialog-content"></div></dialog>
-  <script src="js/devices.js?v=ai-images-1"></script><script src="js/app.js?v=ai-images-1"></script>
+  <script src="js/devices.js?v=board-diagram-1"></script><script src="js/app.js?v=board-diagram-1"></script>
 </body>
 </html>
