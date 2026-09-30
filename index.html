@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#155eef">
   <title>再発明デバイスガイド｜野田中学校</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23155eef'/%3E%3Cpath d='M15 35h10l5-14 7 25 5-11h8' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/style.css?v=board-diagram-1">
+  <link rel="stylesheet" href="css/style.css?v=ai-guide-2">
 </head>
 <body>
   <a class="skip-link" href="#main">本文へスキップ</a>
@@ -58,7 +58,7 @@
     <section class="computer-section" id="computer">
       <div class="section-shell computer-layout">
         <div><p class="kicker light">C = COMPUTER</p><h2>判断する中心は<br>micro:bit</h2><p>センサから情報を受け取り、「もし○○なら」と考えて、次の動きを決めます。</p><div class="built-in-list"><span>ボタン</span><span>タッチロゴ</span><span>明るさ</span><span>温度</span><span>マイク</span><span>加速度</span><span>コンパス</span></div></div>
-        <figure class="microbit-photo"><div class="microbit-map" role="img" aria-label="micro:bit V2の表と裏を模式化したオリジナル図。A・Bボタン、タッチロゴ、LED、マイク、スピーカー、加速度・コンパス・温度センサ、端子の位置を示す"><div class="mb-face mb-front"><span class="mb-title">表</span><span class="mb-logo">TOUCH<br>LOGO</span><span class="mb-button mb-a">A</span><span class="mb-button mb-b">B</span><span class="mb-leds" aria-hidden="true"></span><span class="mb-mic">MIC</span><span class="mb-label mb-label-touch">タッチロゴ</span><span class="mb-label mb-label-buttons">A・Bボタン</span><span class="mb-label mb-label-led">5×5 LED<br><small>明るさも調べる</small></span></div><div class="mb-face mb-back"><span class="mb-title">裏</span><span class="mb-chip mb-chip-main">CPU<br><small>温度</small></span><span class="mb-chip mb-chip-motion">動き<br><small>加速度・コンパス</small></span><span class="mb-speaker">SPEAKER</span><span class="mb-label mb-label-sensor">本体内のセンサ</span><span class="mb-label mb-label-speaker">スピーカー</span></div><div class="mb-ports" aria-hidden="true"><b>P0</b><b>P1</b><b>P2</b><b>3V</b><b>GND</b></div></div><figcaption>写真の転載ではなく、部品の位置関係を学ぶためのオリジナル模式図です。</figcaption></figure>
+        <figure class="microbit-photo"><img src="assets/devices/microbit-v2-front-ai.png" alt="micro:bit V2の前面。A・Bボタン、タッチロゴ、5×5 LED、マイク、5つの端子が見えるAI生成画像"></figure>
       </div>
     </section>
 
@@ -105,7 +105,11 @@
     <section class="ai-section" id="ai">
       <div class="section-shell"><div class="section-heading"><p class="kicker light">AI + REAL WORLD</p><h2>AIの「見つけた！」を、実物の動きへ</h2><p>Teachable Machineで画像・音・ポーズを覚えさせ、micro:bitや部品へつなげます。</p></div>
         <div class="ai-types"><article><img src="assets/devices/ai-image-learning.png" alt="カメラの前で赤いボトルと青いカップを見せて画像認識AIに学習させる生徒"><h3>📷 画像認識</h3><p>猫、人、ペットボトル、水皿など</p></article><article><img src="assets/devices/ai-sound-learning.png" alt="マイクに向かって拍手し、音認識AIに学習させる生徒"><h3>🎤 音認識</h3><p>拍手、声、特定の音など</p></article><article><img src="assets/devices/ai-pose-learning.png" alt="カメラの前で手を上げ、ポーズ認識AIに学習させる生徒"><h3>🧍 ポーズ認識</h3><p>手を上げる、立つ、しゃがむなど</p></article></div>
-        <div class="route-grid"><article><small>ルート A</small><h3>Stretch3でつなぐ</h3><div class="ai-route"><span>Teachable<br>Machine</span><b>→</b><span>Stretch3</span><b>→</b><span>micro:bit<br>More</span><b>→</b><span>micro:bit</span><b>→</b><span>実物</span></div></article><article><small>ルート B</small><h3>Make: AI Robotsでつなぐ</h3><div class="ai-route"><span>Teachable<br>Machine</span><b>→</b><span>モデルを<br>書き出す</span><b>→</b><span>Make: AI<br>Robots</span><b>→</b><span>micro:bit</span><b>→</b><span>実物</span></div><a href="https://makeairobots.com/" target="_blank" rel="noreferrer">Make: AI Robotsを開く</a></article></div>
+        <div class="ai-before"><strong>どちらのルートも、ここまでは同じ</strong><ol><li>Teachable Machineでクラス名を「猫」「人」など、あとでプログラムに書きやすい名前に変える。</li><li>画像・音・ポーズの例を集めて「モデルをトレーニング」し、プレビューで判定を確かめる。</li><li>「モデルをエクスポート」→「モデルをアップロード」→「共有可能なリンクをコピー」でモデルURLを取得する。</li></ol></div>
+        <div class="route-grid detailed-routes">
+          <article><small>ルート A</small><h3>Stretch3 ＋ micro:bit More</h3><p class="route-summary">Scratch風のブロックで、AIの判定とmicro:bitの動きを一つの作品にします。</p><ol class="route-steps"><li><b>専用プログラムを先に書き込む</b><span>micro:bit MoreはStretch3の拡張機能です。使う前に<a href="https://microbit-more.github.io/" target="_blank" rel="noreferrer">micro:bit More公式ページ</a>の「micro:bit program」をダウンロードし、USB接続したmicro:bitの「MICROBIT」ドライブへコピーします。別のプログラムを書き込むと消えるため、その場合はもう一度書き込みます。</span></li><li><b>2つの拡張機能を追加する</b><span><a href="https://stretch3.github.io/" target="_blank" rel="noreferrer">Stretch3</a>をChromeで開き、左下の「拡張機能を追加」から、画像・音なら「TM2Scratch」、ポーズなら「TMPose2Scratch」を追加します。続けて「micro:bit More」も追加します。</span></li><li><b>micro:bitを接続する</b><span>micro:bit Moreの接続ボタンから本体を選びます。Web Bluetoothが使えない環境ではScratch Linkが必要です。接続できないときは、電源・Bluetooth・Scratch Linkを確認します。</span></li><li><b>モデルURLを読み込む</b><span>TM2Scratchの「画像分類モデルURL」または「音声分類モデルURL」ブロックに、Teachable MachineでコピーしたURLを貼ります。</span></li><li><b>判定したクラスで動かす</b><span>「画像ラベル［猫］を受け取ったとき」など、Teachable Machineで付けたクラス名を選び、その下にmicro:bit MoreのLED・音・端子出力などのブロックをつなぎます。</span></li></ol></article>
+          <article><small>ルート B</small><h3>Make: AI Robots ＋ MakeCode</h3><p class="route-summary">AIが見つけたクラス名をUSBシリアル通信でmicro:bitへ送り、MakeCode側で動きを決めます。</p><ol class="route-steps"><li><b>Class名を先に決める</b><span>Teachable Machineの「Class 1」などを「猫」「人」「ペットボトル」のように変更します。この文字列をMakeCodeでも使うため、スペース・大文字小文字・全角半角を含めて完全に同じ名前にします。</span></li><li><b>受信するMakeCodeプログラムを作る</b><span>最初に「シリアル通信の接続先をUSBにする」を置き、「改行を受信したとき」に受信文字列を変数へ保存します。「もし 受信文字列＝猫 なら」のように、Teachable Machineのクラス名を条件の中へそのまま書き、LED・サーボ・ポンプなどの動作を続けます。</span></li><li><b>micro:bitへ書き込む</b><span>MakeCodeのプログラムをmicro:bitへダウンロードします。書き込み後はMakeCodeの接続を解除するかタブを閉じ、同じmicro:bitをMake: AI Robots側から使えるようにします。</span></li><li><b>サイトと機器を接続する</b><span><a href="https://makeairobots.com/" target="_blank" rel="noreferrer">Make: AI Robots</a>の「Connect your micro:bit to your AI」を開き、USB接続したmicro:bitのシリアルポートを選びます。次にモデルURLを貼り、使用するカメラまたはマイクを許可します。</span></li><li><b>クラス名が届くか試す</b><span>カメラに対象を映すと、判定されたクラス名がmicro:bitへ送られます。動かないときは、①Class名の完全一致、②micro:bitがMakeCodeから切断済み、③カメラがTeachable Machineなど別タブで使用中でない、の順に確認します。</span></li></ol><p class="class-example"><b>例</b><code>もし 受信文字列 = "猫" なら → サーボを90°にする</code><span>この「猫」がTeachable Machineで付けたClass名です。</span></p></article>
+        </div>
         <p class="ai-note">Stretch3だけでもAI作品は作れます。ただし今回の再発明では、できるだけmicro:bitやセンサ、モータなど実物の装置も動かしてみましょう。</p>
       </div>
     </section>
@@ -114,6 +118,6 @@
   <footer><div><strong>再発明デバイスガイド</strong><p>金沢市立野田中学校 技術科</p></div><a href="#top">ページの上へ ↑</a></footer>
 
   <dialog id="device-dialog" aria-labelledby="dialog-title"><button class="dialog-close" type="button" aria-label="閉じる">×</button><div id="dialog-content"></div></dialog>
-  <script src="js/devices.js?v=board-diagram-1"></script><script src="js/app.js?v=board-diagram-1"></script>
+  <script src="js/devices.js?v=ai-guide-2"></script><script src="js/app.js?v=ai-guide-2"></script>
 </body>
 </html>
